@@ -9,9 +9,7 @@ router.get('/', (req, res) => {
 
 router.get('/users', async (req, res) => {
   const users = await User.find();
-  console.log('users->', users);
-  console.log('type users->', typeof users);
-  res.json({ users })
+  res.json({ users });
 });
 
 router.get('/users/:id', (req, res) => {
