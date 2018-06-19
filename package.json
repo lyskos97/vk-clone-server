@@ -1,5 +1,5 @@
 {
-  "name": "typeorm-test",
+  "name": "vk-clone-server",
   "version": "0.0.1",
   "main": "src/index.ts",
   "author": {

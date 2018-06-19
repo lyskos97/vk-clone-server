@@ -12,9 +12,9 @@ import schema from './schema';
 const connectionOpts: ConnectionOptions = {
   type: 'postgres',
   url: process.env.POSTGRES_URI,
-  entities: ['src/models/*.ts'],
   ssl: true,
-  synchronize: true
+  synchronize: true,
+  entities: ['src/models/*.ts']
 };
 
 createConnection(connectionOpts)
