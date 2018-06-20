@@ -1,19 +1,20 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import DefaultEntity from './DefaultEntity';
 import Post from './Post';
+import Profile from './Profile';
 
 @Entity()
-export class User extends DefaultEntity {
-  @Column({ name: 'first_name' })
-  firstName: string;
-  @Column({ name: 'last_name' })
-  lastName: string;
-  @Column() avatarUrl: string;
+export default class User extends DefaultEntity {
+  @Column({ unique: true })
+  username: string;
   @Column({ unique: true })
   email: string;
   @Column({ unique: true })
   phoneNumber: string;
+  @Column({ select: false })
+  password: string;
 
-  @OneToMany(type => Post, post => post.author)
-  posts: Post[];
+  @OneToOne(type => Profile, profile => profile.user)
+  @JoinColumn()
+  profile: Profile;
 }
