@@ -14,7 +14,7 @@ const connectionOpts: ConnectionOptions = {
   url: process.env.POSTGRES_URI,
   ssl: true,
   synchronize: true,
-  entities: ['src/models/*.ts']
+  entities: ['models/*.ts']
 };
 
 createConnection(connectionOpts)

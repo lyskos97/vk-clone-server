@@ -4,6 +4,7 @@ import DefaultEntity from './DefaultEntity';
 import User from './User';
 import Photo from './Photo';
 import City from './City';
+import Post from './Post';
 
 @Entity()
 export default class Profile extends DefaultEntity {
@@ -22,4 +23,6 @@ export default class Profile extends DefaultEntity {
   user: User;
   @OneToMany(type => Photo, photo => photo.postedBy)
   photos: Photo[];
+  @OneToMany(type => Post, post => post.author)
+  posts: Post[];
 }

@@ -1,6 +1,6 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+
 import DefaultEntity from './DefaultEntity';
-import Post from './Post';
 import Profile from './Profile';
 
 @Entity()
