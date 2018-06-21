@@ -9,16 +9,8 @@ import { createConnection, ConnectionOptions } from 'typeorm';
 import routes from './routes';
 import schema from './schema';
 
-const connectionOpts: ConnectionOptions = {
-  type: 'postgres',
-  url: process.env.POSTGRES_URI,
-  ssl: true,
-  synchronize: true,
-  entities: ['models/*.ts']
-};
-
-createConnection(connectionOpts)
-  .then(conn => {
+createConnection()
+  .then(async conn => {
     const app = express();
     const port = process.env.PORT || 4000;
 
