@@ -7,6 +7,6 @@ import Profile from './Profile';
 export default class Post extends DefaultEntity {
   @Column() text: string;
 
-  @ManyToOne(type => Profile, profile => profile.posts)
+  @ManyToOne(type => Profile, profile => profile.posts, { nullable: false })
   author: Profile;
 }

@@ -10,19 +10,24 @@ import Post from './Post';
 export default class Profile extends DefaultEntity {
   @Column() firstName: string;
   @Column() lastName: string;
-  @Column() avatarUrl: string;
-  @Column({ enum: ['male, female'] })
+  @Column({ enum: ['male, female'], nullable: true })
   gender: string;
-  @Column() birthDate: Date;
+  @Column({ nullable: true })
+  birthDate: Date;
 
+  /* RELATIONS */
   @ManyToOne(type => City, city => city.residents)
   residenceTown: City;
   @ManyToOne(type => City, city => city.descendants)
   hometown: City;
-  @OneToOne(type => User, user => user.profile)
-  user: User;
+  @OneToMany(type => Photo, photo => photo.postedBy)
+  avatars: string[];
   @OneToMany(type => Photo, photo => photo.postedBy)
   photos: Photo[];
   @OneToMany(type => Post, post => post.author)
   posts: Post[];
+
+  /* ASSOCIATIONS */
+  @OneToOne(type => User, user => user.profile, { nullable: false })
+  user: User;
 }

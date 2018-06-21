@@ -7,6 +7,6 @@ import Profile from './Profile';
 export default class Photo extends DefaultEntity {
   @Column() url: string;
 
-  @ManyToOne(type => Profile, profile => profile.photos)
+  @ManyToOne(type => Profile, profile => profile.photos, { nullable: false })
   postedBy: Profile;
 }

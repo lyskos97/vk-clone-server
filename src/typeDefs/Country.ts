@@ -4,7 +4,7 @@ export default `
     name: String!
   }
 
-  input CreateCountryPayload {
+  input CreateCountryInput {
     name: String!
   }
 
@@ -13,6 +13,6 @@ export default `
   }
 
   type Mutation {
-    createCountry(record: CreateCountryPayload!): Country
+    createCountry(record: CreateCountryInput!): Country
   }
 `;
