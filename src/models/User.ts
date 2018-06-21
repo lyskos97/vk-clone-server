@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 
 import DefaultEntity from './DefaultEntity';
 import Profile from './Profile';
@@ -11,7 +11,7 @@ export default class User extends DefaultEntity {
   email: string;
   @Column({ unique: true })
   phoneNumber: string;
-  @Column({ select: false })
+  @Column()
   password: string;
 
   @OneToOne(type => Profile, profile => profile.user)
