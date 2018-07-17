@@ -9,16 +9,8 @@ import { createConnection, ConnectionOptions } from 'typeorm';
 import routes from './routes';
 import schema from './schema';
 
-const connectionOpts: ConnectionOptions = {
-  type: 'postgres',
-  url: process.env.POSTGRES_URI,
-  ssl: true,
-  synchronize: true,
-  entities: ['src/models/*.ts']
-};
-
-createConnection(connectionOpts)
-  .then(conn => {
+createConnection()
+  .then(async conn => {
     const app = express();
     const port = process.env.PORT || 4000;
 
@@ -26,11 +18,11 @@ createConnection(connectionOpts)
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use('/api', routes);
+    app.use('/rest', routes);
     app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
     app.listen(port, () => {
-      console.log('Awesome app is on port', port);
+      console.log(`Awesome app at http://localhost:${port}/graphql`);
     });
   })
   .catch(e => {

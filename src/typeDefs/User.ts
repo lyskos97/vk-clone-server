@@ -1,11 +1,18 @@
+// TODO: a lot to implement & describe
 export default `
-  type User {
-    id: ID!
+  type Profile {
     firstName: String!
     lastName: String!
+    avatar: String
   }
 
-  input CreateUserPayload {
+  type User {
+    id: ID!
+    username: String!
+    email: String!
+  }
+
+  input CreateUserInput {
     firstName: String!
     lastName: String!
   }
@@ -15,6 +22,6 @@ export default `
   }
 
   type Mutation {
-    createUser(record: CreateUserPayload!): User
+    createUser(record: CreateUserInput!): User
   }
 `;

@@ -1,4 +1,4 @@
-import { User } from '../models/User';
+import User from '../models/User';
 
 export default {
   Query: {
@@ -7,10 +7,9 @@ export default {
     }
   },
   Mutation: {
-    createUser: async (source: any, { record }: any) => {
+    createUser: (source: any, { record }: any) => {
       const user = User.create(record);
-      user.save();
-      return user;
+      return user.save();
     }
   }
 };

@@ -1,19 +1,38 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne } from 'typeorm';
+
 import DefaultEntity from './DefaultEntity';
-import Post from './Post';
+import Chat from './Chat';
+import Message from './Message';
+import Profile from './Profile';
+import DirectMessage from './DirectMessage';
 
 @Entity()
-export class User extends DefaultEntity {
-  @Column({ name: 'first_name' })
-  firstName: string;
-  @Column({ name: 'last_name' })
-  lastName: string;
-  @Column() avatarUrl: string;
+export default class User extends DefaultEntity {
+  @Column({ unique: true })
+  username: string;
   @Column({ unique: true })
   email: string;
-  @Column({ unique: true })
-  phoneNumber: string;
+  @Column() password: string;
 
-  @OneToMany(type => Post, post => post.author)
-  posts: Post[];
+  @OneToOne(type => Profile, profile => profile.user, { nullable: false })
+  @JoinColumn()
+  profile: Profile;
+
+  @ManyToMany(type => Chat)
+  chats: Chat[];
+
+  @OneToMany(type => DirectMessage, directMessage => directMessage.sender)
+  sentDirectMessages: DirectMessage[];
+
+  @OneToMany(type => DirectMessage, directMessage => directMessage.receiver)
+  receivedDirectMessages: DirectMessage[];
+
+  @OneToMany(type => Message, message => message.sender)
+  messages: Message[];
+
+  @OneToMany(type => Chat, chat => chat.admin)
+  regulatedChats: Chat[];
 }
+
+// @Column({ unique: true })
+// phoneNumber: string;
