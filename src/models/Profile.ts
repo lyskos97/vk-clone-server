@@ -28,9 +28,6 @@ export default class Profile extends DefaultEntity {
   @OneToMany(type => Photo, photo => photo.postedBy)
   photos: Photo[];
 
-  @OneToMany(type => Post, post => post.author)
-  posts: Post[];
-
   /* ASSOCIATIONS */
   @OneToOne(type => User, user => user.profile, { nullable: false })
   user: User;

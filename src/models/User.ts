@@ -5,6 +5,7 @@ import Chat from './Chat';
 import Message from './Message';
 import Profile from './Profile';
 import DirectMessage from './DirectMessage';
+import Post from './Post';
 
 @Entity()
 export default class User extends DefaultEntity {
@@ -36,4 +37,7 @@ export default class User extends DefaultEntity {
 
   @OneToMany(type => Chat, chat => chat.admin)
   regulatedChats: Chat[];
+
+  @OneToMany(type => Post, post => post.author)
+  posts: Post[];
 }
