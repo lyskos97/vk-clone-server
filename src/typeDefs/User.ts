@@ -1,20 +1,16 @@
 // TODO: a lot to implement & describe
 export default `
-  type Profile {
-    firstName: String!
-    lastName: String!
-    avatar: String
-  }
-
   type User {
     id: ID!
-    username: String!
     email: String!
+    profile: Profile!
+    password: String!
   }
 
   input CreateUserInput {
-    firstName: String!
-    lastName: String!
+    email: String!
+    password: String!
+    profile: CreateProfileInput!
   }
 
   type Query {

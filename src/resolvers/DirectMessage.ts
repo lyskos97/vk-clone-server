@@ -3,7 +3,7 @@ import User from '../models/User';
 
 export default {
   Query: {
-    allDirectMessages: () => DirectMessage.find()
+    allDirectMessages: () => DirectMessage.find({ relations: ['sender', 'receiver'] })
   },
   Mutation: {
     createDirectMessage: async (_: any, args: any) => {
