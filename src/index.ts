@@ -18,11 +18,11 @@ createConnection()
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use('/api', routes);
+    app.use('/rest', routes);
     app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
     app.listen(port, () => {
-      console.log('Awesome app is on port', port);
+      console.log(`Awesome app at http://localhost:${port}/graphql`);
     });
   })
   .catch(e => {

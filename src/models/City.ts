@@ -1,7 +1,7 @@
-import { Column, ManyToOne, OneToMany, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
-import DefaultEntity from './DefaultEntity';
 import Country from './Country';
+import DefaultEntity from './DefaultEntity';
 import Profile from './Profile';
 
 @Entity()

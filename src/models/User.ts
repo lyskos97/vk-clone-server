@@ -1,8 +1,10 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne } from 'typeorm';
 
 import DefaultEntity from './DefaultEntity';
-import Profile from './Profile';
+import Chat from './Chat';
 import Message from './Message';
+import Profile from './Profile';
+import DirectMessage from './DirectMessage';
 
 @Entity()
 export default class User extends DefaultEntity {
@@ -16,8 +18,14 @@ export default class User extends DefaultEntity {
   @JoinColumn()
   profile: Profile;
 
-  // @OneToMany(type => Message, message => message.author)
-  // messages: Message[];
+  @ManyToMany(type => Chat)
+  chats: Chat[];
+
+  @OneToMany(type => DirectMessage, directMessage => directMessage.sender)
+  directMessages: DirectMessage[];
+
+  @OneToMany(type => Message, message => message.sender)
+  messages: Message[];
 }
 
 // @Column({ unique: true })
