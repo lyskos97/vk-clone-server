@@ -1,7 +1,7 @@
 import Post from '../models/Post';
 import User from '../models/User';
 
-type Args = {
+type CreatePostArgs = {
   record: {
     text: string;
     authorId: number;
@@ -13,7 +13,7 @@ export default {
     allPosts: () => Post.find({ relations: ['author'] })
   },
   Mutation: {
-    createPost: async (_: any, args: Args) => {
+    createPost: async (_: any, args: CreatePostArgs) => {
       const { authorId, ...postData } = args.record;
       const post = Post.create(postData);
       const author = await User.findOne(authorId);
