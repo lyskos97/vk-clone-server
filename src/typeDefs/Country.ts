@@ -1,6 +1,6 @@
 export default `
   type Country {
-    uid: ID!
+    id: ID!
     name: String!
   }
 

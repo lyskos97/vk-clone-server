@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, ManyToOne } from 'typeorm';
 import DefaultEntity from './DefaultEntity';
 import User from './User';
 
@@ -6,6 +6,9 @@ import User from './User';
 export default class extends DefaultEntity {
   @Column() text: string;
 
-  @OneToMany(type => User, user => user.directMessages)
+  @ManyToOne(type => User, user => user.sentDirectMessages, { nullable: false })
   sender: User;
+
+  @ManyToOne(type => User, user => user.receivedDirectMessages, { nullable: false })
+  receiver: User;
 }

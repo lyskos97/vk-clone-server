@@ -11,8 +11,9 @@ export default class Chat extends DefaultEntity {
   @ManyToMany(type => Message)
   messages: Message[];
 
-  @ManyToOne(type => User)
+  @ManyToOne(type => User, user => user.regulatedChats, { nullable: false })
   admin: User;
+
   @ManyToMany(type => User)
   @JoinTable()
   members: User[];

@@ -22,10 +22,16 @@ export default class User extends DefaultEntity {
   chats: Chat[];
 
   @OneToMany(type => DirectMessage, directMessage => directMessage.sender)
-  directMessages: DirectMessage[];
+  sentDirectMessages: DirectMessage[];
+
+  @OneToMany(type => DirectMessage, directMessage => directMessage.receiver)
+  receivedDirectMessages: DirectMessage[];
 
   @OneToMany(type => Message, message => message.sender)
   messages: Message[];
+
+  @OneToMany(type => Chat, chat => chat.admin)
+  regulatedChats: Chat[];
 }
 
 // @Column({ unique: true })

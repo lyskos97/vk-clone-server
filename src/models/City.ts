@@ -10,8 +10,10 @@ export default class City extends DefaultEntity {
 
   @ManyToOne(type => Country, country => country.cities, { nullable: false })
   country: Country;
+
   @OneToMany(type => Profile, profile => profile.hometown)
   descendants: Profile[];
+
   @OneToMany(type => Profile, profile => profile.residenceTown)
   residents: Profile[];
 }

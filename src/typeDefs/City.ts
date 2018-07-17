@@ -1,7 +1,8 @@
 export default `
   type City {
-    uid: ID!
+    id: ID!
     name: String!
+    country: Country!
   }
 
   type Query {
@@ -10,6 +11,7 @@ export default `
 
   input CreateCityInput {
     name: String!
+    countryId: ID!
   }
 
   type RemoveCityPayload {

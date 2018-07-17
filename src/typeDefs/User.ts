@@ -7,7 +7,7 @@ export default `
   }
 
   type User {
-    uid: ID!
+    id: ID!
     username: String!
     email: String!
   }

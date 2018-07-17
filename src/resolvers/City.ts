@@ -1,5 +1,6 @@
 import City from '../models/City';
 import { Source } from 'graphql';
+import Country from '../models/Country';
 
 export default {
   Query: {
@@ -8,8 +9,12 @@ export default {
     }
   },
   Mutation: {
-    createCity: (source: any, { record }: any) => {
-      const city = City.create(record);
+    createCity: async (source: any, args: any) => {
+      const { countryId, ...cityData } = args.record;
+      const city = City.create(cityData);
+      const country = await Country.findOne(countryId);
+      city.country = country;
+
       return city.save();
     },
     removeCity: async (source: Source, { id }: any) => {
