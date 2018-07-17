@@ -12,8 +12,8 @@ export default `
 
   input CreateDirectMessageInput {
     text: String!
-    sender: User!
-    receiver: User!
+    senderId: ID!
+    receiverId: ID!
   }
 
   type Mutation {

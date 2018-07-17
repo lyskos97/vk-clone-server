@@ -16,10 +16,10 @@ export default class Profile extends DefaultEntity {
   birthDate: Date;
 
   /* RELATIONS */
-  @ManyToOne(type => City, city => city.residents, { nullable: false })
+  @ManyToOne(type => City, city => city.residents)
   residenceTown: City;
 
-  @ManyToOne(type => City, city => city.descendants, { nullable: false })
+  @ManyToOne(type => City, city => city.descendants)
   hometown: City;
 
   @OneToMany(type => Photo, photo => photo.postedBy)
@@ -27,9 +27,6 @@ export default class Profile extends DefaultEntity {
 
   @OneToMany(type => Photo, photo => photo.postedBy)
   photos: Photo[];
-
-  @OneToMany(type => Post, post => post.author)
-  posts: Post[];
 
   /* ASSOCIATIONS */
   @OneToOne(type => User, user => user.profile, { nullable: false })
