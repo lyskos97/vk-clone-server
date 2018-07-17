@@ -3,7 +3,7 @@ import DefaultEntity from './DefaultEntity';
 import User from './User';
 
 @Entity()
-export default class extends DefaultEntity {
+export default class DirectMessage extends DefaultEntity {
   @Column() text: string;
 
   @ManyToOne(type => User, user => user.sentDirectMessages, { nullable: false })

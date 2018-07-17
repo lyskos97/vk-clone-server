@@ -1,4 +1,4 @@
-import { Entity, ManyToMany, ManyToOne, JoinTable, Column } from 'typeorm';
+import { Entity, ManyToMany, ManyToOne, JoinTable, Column, OneToMany } from 'typeorm';
 
 import DefaultEntity from './DefaultEntity';
 import Message from './Message';
@@ -8,7 +8,7 @@ import User from './User';
 export default class Chat extends DefaultEntity {
   @Column() name: string;
 
-  @ManyToMany(type => Message)
+  @OneToMany(type => Message, message => message.chat)
   messages: Message[];
 
   @ManyToOne(type => User, user => user.regulatedChats, { nullable: false })

@@ -4,7 +4,7 @@ import User from './User';
 import Chat from './Chat';
 
 @Entity()
-export default class extends DefaultEntity {
+export default class Message extends DefaultEntity {
   @Column() text: string;
 
   @ManyToOne(type => User, user => user.messages)

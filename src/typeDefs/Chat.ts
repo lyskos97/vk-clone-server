@@ -6,4 +6,17 @@ export default `
     members: [User!]
     messages: [Message!]
   }
+
+  type Query {
+    allChats: [Chat!]
+  }
+
+  input CreateChatInput {
+    name: String!
+    adminId: ID!
+  }
+
+  type Mutation {
+    createChat(record: CreateChatInput!): Chat!
+  }
 `;
